@@ -1,2 +1,0 @@
-# Practic
-Hacking The Pentagon
