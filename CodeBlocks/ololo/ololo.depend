@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1469004094 source:d:\wk\practic\codeblocks\ololo\main.cpp
+	<windows.h>
+	<iostream>
+	<string>
+	<TlHelp32.h>
+

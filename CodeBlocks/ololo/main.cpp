@@ -13,6 +13,7 @@ using namespace std;
 void OPEN()
 {
 	wstring s;
+	wcout << "Введите имя процесса, который нужно запустить: ";
 	wcin >> s;
 	LPCWSTR Path = s.c_str();
 	ShellExecuteW(NULL,L"open", Path, NULL, NULL, SW_SHOWNORMAL);
@@ -39,6 +40,7 @@ void LIST()
 void REMOVE()
 {
 	wstring s;
+	wcout << "Введите имя процесса, который нужно остановить: ";
 	wcin >> s;
 	HANDLE Target = NULL;
 	PROCESSENTRY32 Pc = { sizeof(PROCESSENTRY32) };
@@ -61,11 +63,12 @@ int main(int argc, char* argv[])
 	{
 		string ss;
 		int s;
-		cout << "Введите wbahe и нажмите Enter:\n";
-		cout << "1 - для создания процеса\n";
-		cout << "2 - для вивода списка процесов \n";
-		cout << "3 - для завершение процеса\n";
-		cout << "4 - если вы гуманитарий" << endl;
+		cout << "Введите цифру и нажмите Enter:\n";
+		cout << "1 - для создания процесса\n";
+		cout << "2 - для вывода списка процессов \n";
+		cout << "3 - для завершения процесса\n";
+		cout << "4 - если вы гуманитарий\n";
+		cout << "5 - для выхода из программы" << endl;
 		cin >> s;
 		switch(s)
 		{
@@ -73,7 +76,8 @@ int main(int argc, char* argv[])
 		case 2: LIST(); break;
 		case 3: REMOVE(); break;
 		case 4: system("shutdown /s"); exit(0); break;
-		default:exit(0);
+		case 5: exit(0);
+		default: cout << "Неверно набранный номер. Выход из программы\n"; exit(0);
 		}
 		cout << endl;
 	}
