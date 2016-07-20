@@ -2,7 +2,7 @@
 //
 #include "stdafx.h"
 #include <windows.h>
-#include <iostream> 
+#include <iostream>
 #include <string>
 #include <TlHelp32.h>
 using namespace std;
@@ -11,6 +11,7 @@ using namespace std;
 void OPEN()
 {
 	wstring s;
+	wcout << "Введите имя процесса, который следует запустить: ";
 	wcin >> s;
 	LPCWSTR Path = s.c_str();
 	ShellExecute(NULL,L"open", Path, NULL, NULL, SW_SHOWNORMAL);
@@ -37,6 +38,7 @@ void LIST()
 void REMOVE()
 {
 	wstring s;
+	wcout << "Введите имя процесса, который следует остановить: ";
 	wcin >> s;
 	HANDLE Target = NULL;
 	PROCESSENTRY32 Pc = { sizeof(PROCESSENTRY32) };
@@ -59,19 +61,21 @@ int main()
 	{
 		string ss;
 		int s;
-		cout << "Введите:\n";
-		cout << "1 - для создания процеса\n";
-		cout << "2 - для вивода списка процесов \n";
-		cout << "3 - для завершение процеса\n";
-		cout << "4 - если вы гуманитарий" << endl;
+		cout << "Введите цифру и нажмите Энтер:\n";
+		cout << "1 - для создания процесса\n";
+		cout << "2 - для вывода списка процессов \n";
+		cout << "3 - для завершения процесса\n";
+		cout << "4 - если вы гуманитарий\n";
+		cout << "5 - для выхода из программы" << endl;
 		cin >> s;
 		switch(s)
 		{
-		case 1: OPEN(); break; 
+		case 1: OPEN(); break;
 		case 2: LIST(); break;
 		case 3: REMOVE(); break;
 		case 4: system("shutdown /s"); exit(0); break;
-		default:exit(0);
+		case 5: exit(0);
+		default: cout << "Неправильно набранный номер. Выход из программы..." << endl; exit(0);
 		}
 		cout << endl;
 	}
