@@ -49,9 +49,9 @@ void REMOVE()
 		do {
 			if (!wcscmp(Pc.szExeFile, s.c_str())) {
 				Target = OpenProcess(PROCESS_ALL_ACCESS, TRUE, Pc.th32ProcessID);
+				TerminateProcess(Target, 0);
 			}
 		} while (Process32Next(hSnapshot, &Pc));
-		TerminateProcess(Target, 0);
 		CloseHandle(Target);
 	}
 }
