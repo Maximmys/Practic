@@ -11,7 +11,7 @@ using namespace std;
 void OPEN()
 {
 	wstring s;
-	wcout << "¬ведите им€ процесса, который следует запустить: ";
+	cout << "¬ведите им€ процесса, который следует запустить: ";
 	wcin >> s;
 	LPCWSTR Path = s.c_str();
 	ShellExecute(NULL,L"open", Path, NULL, NULL, SW_SHOWNORMAL);
@@ -38,7 +38,7 @@ void LIST()
 void REMOVE()
 {
 	wstring s;
-	wcout << "¬ведите им€ процесса, который следует остановить: ";
+	cout << "¬ведите им€ процесса, который следует остановить: ";
 	wcin >> s;
 	HANDLE Target = NULL;
 	PROCESSENTRY32 Pc = { sizeof(PROCESSENTRY32) };
@@ -47,9 +47,10 @@ void REMOVE()
 		do {
 			if (!wcscmp(Pc.szExeFile, s.c_str())) {
 				Target = OpenProcess(PROCESS_ALL_ACCESS, TRUE, Pc.th32ProcessID);
+				TerminateProcess(Target, 0);
 			}
 		} while (Process32Next(hSnapshot, &Pc));
-		TerminateProcess(Target, 0);
+		
 		CloseHandle(Target);
 	}
 }
